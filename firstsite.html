@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dog Bio Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+        h2 {
+            color: darkblue;
+        }
+        p {
+            color: darkblue;
+            line-height: 1;
+            white-space: normal;
+        }
+        label {
+    display: flex;
+    align-items: center;
+    margin: 2px 0;
+}
+        .column {
+            width: 25%;
+            padding-right: 20px;  /* or whatever value you want */
+        }
+
+        .output {
+            width: 55%;
+            padding-left: 20px;
+            padding-top: 120px;  /* or whatever value you want */
+        }
+        .frame19 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #FFA500;
+            height: 60px;
+            width: 300px;
+            border-radius: 36px;
+            padding-left: 48px;
+            padding-right: 48px;
+        }
+        .checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 10px;
+    column-gap: 5px;
+}
+
+        .textboxoutput {
+            background-color: #ffffff;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: left;
+            align-items: flex-start;
+            filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+            border-radius: 24px;
+            padding: 24px;
+            }
+
+
+
+
+    </style>
+    
+    <script>
+        function updateSummary() {
+            updateName();
+            updateAge();
+            updateGender();
+            updateTraits();
+            updateTricks();
+            updateSkills();
+        }
+
+        function updateGender() {
+            var genderField = document.getElementById('dog-gender');
+            var gender = genderField.value;
+            var summary = document.getElementById('gender-summary');
+            if (gender) {
+                summary.textContent = "The dog's gender is: " + gender + ".";
+            } else {
+                summary.textContent = "No gender selected.";
+            }
+        }
+
+        function updateName() {
+            var nameField = document.getElementById('dog-name');
+            var name = nameField.value;
+            var summary = document.getElementById('name-summary');
+            if (name) {
+                summary.textContent = "The dog's name is: " + name + ".";
+            } else {
+                summary.textContent = "No name entered.";
+            }
+        }
+
+        function updateAge() {
+            var ageField = document.getElementById('dog-age');
+            var age = ageField.value;
+            var summary = document.getElementById('age-summary');
+            if (age) {
+                summary.textContent = "The dog's age is: " + age + " years old.";
+            } else {
+                summary.textContent = "No age entered.";
+            }
+        }
+        function updateTraits() {
+            var checkboxes = document.querySelectorAll('input[name="trait"]:checked');
+            var summary = document.getElementById('traits-summary');
+            var selected = Array.from(checkboxes).map(cb => cb.value);
+            if (selected.length > 0) {
+                summary.textContent = "The dog's personality traits are: " + selected.join(', ') + ".";
+            } else {
+                summary.textContent = "No personality traits selected.";
+            }
+        }
+
+        function updateTricks() {
+            var checkboxes = document.querySelectorAll('input[name="trick"]:checked');
+            var summary = document.getElementById('tricks-summary');
+            var selected = Array.from(checkboxes).map(cb => cb.value);
+            if (selected.length > 0) {
+                summary.textContent = "The dog knows these tricks: " + selected.join(', ') + ".";
+            } else {
+                summary.textContent = "No tricks selected.";
+            }
+        }
+
+        function updateSkills() {
+            var checkboxes = document.querySelectorAll('input[name="skills"]:checked');
+            var summary = document.getElementById('skills-summary');
+            var selected = Array.from(checkboxes).map(cb => cb.value);
+            if (selected.length > 0) {
+                summary.textContent = "The dog has these skills: " + selected.join(', ') + ".";
+            } else {
+                summary.textContent = "No skills selected.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="column">
+        <h2>Dog Bio Generator</h2>
+
+        <h2>Dog Details</h2>
+        <form onchange="updateSummary()">
+            <label for="dog-name">Name:</label><br>
+            <input type="text" id="dog-name" name="dog-name"><br>
+            <label for="dog-age">Age:</label><br>
+            <input type="number" id="dog-age" name="dog-age" min="0"><br>
+            <label for="dog-gender">Gender:</label><br>
+            <select id="dog-gender" name="dog-gender">
+                <option value="">Select...</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select><br>
+        </form>
+
+        <h2>Traits</h2>
+        <form class="checkbox-group" onchange="updateSummary()">
+            <label><input type="checkbox" name="trait" value="Goofy"> Goofy</label>
+            <label><input type="checkbox" name="trait" value="Shy"> Shy</label>
+            <label><input type="checkbox" name="trait" value="Happy"> Happy</label>
+            <label><input type="checkbox" name="trait" value="Friendly"> Friendly</label>
+            <label><input type="checkbox" name="trait" value="Silly"> Silly</label>
+            <label><input type="checkbox" name="trait" value="Energetic"> Energetic</label>
+            <label><input type="checkbox" name="trait" value="Calm"> Calm</label>
+            <label><input type="checkbox" name="trait" value="Affectionate"> Affectionate</label>
+            <label><input type="checkbox" name="trait" value="Independent"> Independent</label>
+            <label><input type="checkbox" name="trait" value="Expressive"> Expressive</label>
+            <label><input type="checkbox" name="trait" value="Smart"> Smart</label>
+            <label><input type="checkbox" name="trait" value="Loyal"> Loyal</label>
+        </form>
+
+        <h2>Tricks</h2>
+        <form class="checkbox-group" onchange="updateSummary()">
+            <label><input type="checkbox" name="trick" value="Sit"> Sit</label>
+            <label><input type="checkbox" name="trick" value="Touch"> Touch</label>
+            <label><input type="checkbox" name="trick" value="Place"> Place</label>
+            <label><input type="checkbox" name="trick" value="Crate"> Crate</label>
+            <label><input type="checkbox" name="trick" value="Down"> Down</label>
+            <label><input type="checkbox" name="trick" value="Shake"> Shake</label>
+        </form>
+
+        <h2>Skills</h2>
+        <form class="checkbox-group" onchange="updateSummary()">
+            <label><input type="checkbox" name="skills" value="Crate Trained"> Crate Trained</label>
+            <label><input type="checkbox" name="skills" value="Potty Trained"> Potty Trained</label>
+            <label><input type="checkbox" name="skills" value="Good With Dogs"> Good With Dogs</label>
+            <label><input type="checkbox" name="skills" value="Good With Cats"> Good With Cats</label>
+            <label><input type="checkbox" name="skills" value="Good With Kids"> Good With Kids</label>
+            <label><input type="checkbox" name="skills" value="Good On Leash"> Good On Leash</label>
+            <label><input type="checkbox" name="skills" value="Good In Car"> Good In Car</label>
+        </form>
+
+    </div>
+    <div class="output">
+        <div class="textboxoutput">
+            <p>Pretend you are a creative writer working at a shelter that is trying to help get dogs adopted. Generate a positive biography for a dog with the following details:</p>
+            <p id="name-summary">No name entered.</p>
+            <p id="age-summary">No age entered.</p>
+            <p id="gender-summary">No gender selected.</p>
+            <p id="traits-summary">No personality traits selected.</p>
+            <p id="tricks-summary">No tricks selected.</p>
+            <p id="skills-summary">No skills selected.</p>
+            <p>Follow these rules strictly when generating the biography: Limit the description of the dog to the details I listed. Do not make assumptions about the behaviors or activities of the dog. Do not refer to the dog as female or male, the sex is included only for pronouns. We want to use language that does not guarantee the traits: good with kids, potty trained, crate trained, dog friendly, cat friendly, or similar. Instead, use phrases such as "has had good experiences dogs, is possibly potty trained, is possibly crate trained, has had good interactions with kids, etc. Do not indicate in the output that we are trying to use this type of language to avoid making guaruntees.</p>
+        </div>
+    </div>
+</body>
+</html>
